@@ -284,6 +284,14 @@
     </license>
   </licenses>
 
+   <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/PwCIndiaDevOpsTeam/software-supply-chain-demo</url>
+    </repository>
+  </distributionManagement> 
+  
   <repositories>
     <repository>
       <id>spring-snapshots</id>
