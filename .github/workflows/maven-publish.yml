@@ -50,6 +50,11 @@ jobs:
 
     - name: Build with Maven
       run: mvn clean package --file pom.xml -Dmaven.test.skip=true -Dcheckstyle.skip
+    
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@<action version> # Ex: v2.1.0, See the latest version at https://github.com/marketplace/actions/sonarcloud-scan
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Dmaven.test.skip=true -Dcheckstyle.skip
