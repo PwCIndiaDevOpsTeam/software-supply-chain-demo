@@ -16,7 +16,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/pwcindiadevopsteam/base-container-image:sha256-c9081feb9227ced18a489193bda87c920c43649f6a110c1e05ab83575e252a08.sig
+      image: ghcr.io/pwcindiadevopsteam/base-container-image:sha256-c9081feb9227ced18a489193bda87c920c43649f6a110c1e05ab83575e252a08
       credentials:
         username: pwcindiadevopsteam/${{ github.actor }}
         password: ${{ secrets.github_token }}
