@@ -56,7 +56,7 @@ jobs:
         restore-keys: ${{ runner.os }}-sonar
 
     - name: Build and analyze
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dmaven.test.skip=true -Dcheckstyle.skip  -Dsonar.projectKey=software-supply-chain-demo -Dsonar.projectName='software-supply-chain-demo'
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dmaven.test.skip=true -Dcheckstyle.skip  -Dsonar.projectKey=software-supply-chain-demo -Dsonar.projectName='software-supply-chain-demo' -Dsonar.organization='pwcindiadevopsteam'
 #-Pcoverage
       env:
           # Needed to get some information about the pull request, if any
