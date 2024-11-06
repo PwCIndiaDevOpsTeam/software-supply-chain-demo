@@ -48,13 +48,28 @@ jobs:
          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
          restore-keys: ${{ runner.os }}-m2   
 
+    - name: Cache SonarCloud packages
+      uses: actions/cache@v1
+      with:
+        path: ~/.sonar/cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+
+    - name: Build and analyze
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage
+      env:
+          # Needed to get some information about the pull request, if any
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # SonarCloud access token should be generated from https://sonarcloud.io/account/security/
+        SONAR_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
+
     - name: Build with Maven
       run: mvn clean package --file pom.xml -Dmaven.test.skip=true -Dcheckstyle.skip
     
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@v3.1.0
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
+    #- name: SonarCloud Scan
+    #  uses: sonarsource/sonarcloud-github-action@v3.1.0
+    #  env:
+    #    SONAR_TOKEN: ${{ secrets.SONAR_GITHUB_TOKEN }}
 
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Dmaven.test.skip=true -Dcheckstyle.skip
