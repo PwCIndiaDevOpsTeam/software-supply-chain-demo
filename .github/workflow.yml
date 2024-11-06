@@ -1,7 +1,7 @@
 name: DevSecOps Pipeline
 on: [push]
     branches: 
-      - [ test ]
+      [ test ]
 
 jobs:
   build:
