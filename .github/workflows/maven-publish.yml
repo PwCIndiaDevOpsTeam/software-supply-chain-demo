@@ -28,7 +28,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build with Maven Wrapper
-      run: mvn -B package --file src/pom.xml
+      run: mvn -B package --file pom.xml
 #      run: |
 #           chmod +x ./build/build_maven.sh
 #           set -x 
