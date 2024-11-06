@@ -56,7 +56,8 @@ jobs:
         restore-keys: ${{ runner.os }}-sonar
 
     - name: Build and analyze
-      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dmaven.test.skip=true -Dcheckstyle.skip #-Pcoverage
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dmaven.test.skip=true -Dcheckstyle.skip  -Dsonar.projectKey=software-supply-chain-demo -Dsonar.projectName='software-supply-chain-demo'
+#-Pcoverage
       env:
           # Needed to get some information about the pull request, if any
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
